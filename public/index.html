@@ -14,7 +14,7 @@
         <div class="panel-body">
           <ul>
             <li>User can submit a FormData object that includes a file upload:
-                <form action="some_action" class="form-inline" id="form">
+                <form action="/filepost/" class="form-inline" id="form" method="POST" target="test" enctype="multipart/form-data">
                   <fieldset class="form-group">
                     <hr/>
                     <div class="form-group">
@@ -33,10 +33,20 @@
                 <li><code>[{"fileSize":"000"}]</code></li>
               </ul>
             </li>
+            <li>User can browse recent queries like this:
+              <ul>
+                <li><a href="https://file-metadata-microservice-rfprod.c9users.io/queries/" target="test">https://file-metadata-microservice-rfprod.c9users.io/queries/</a> <a href="https://file-metadata-microservice-rfprod.c9users.io/queries/" target=_blank><span class="glyphicon glyphicon-new-window"></span></a></li>
+              </ul>
+            </li>
+            <li>User can clear stored queries data like this:
+              <ul>
+                <li><a href="https://file-metadata-microservice-rfprod.c9users.io/cleardata/" target="test">https://file-metadata-microservice-rfprod.c9users.io/cleardata/</a> <a href="https://file-metadata-microservice-rfprod.c9users.io/cleardata/" target=_blank><span class="glyphicon glyphicon-new-window"></span></a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
-      <iframe class="wordwrap" name="test" onload="resizeIframe(this);" src="#" style="width:100%;hidden;border:0;"></iframe>
+      <iframe name="test" onload="resizeIframe(this);" src="#" style="width:100%;border:0;"></iframe>
       <script>
         function resizeIframe(obj) {
           obj.style.height = '0px';

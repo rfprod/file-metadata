@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Query = new Schema({
 	_id: Number,
-	term: String,
+	name: String,
+	size: String,
 	when: String
 });
 
