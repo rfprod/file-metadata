@@ -1,49 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Image Search Abstraction Layer</title>
+    <title>File Metadata Microservice</title>
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <link href="/public/css/bootstrap.min.css" rel="stylesheet">
     <script src="/public/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div class="container-fluid">
-      <h3>Image Search Abstraction Layer <a class="btn btn-primary btn-info" href="https://github.com/rfprod/image-search" target=_blank>GitHub Repo</a></h3>
+      <h3>File Metadata Microservice <a class="btn btn-primary btn-info" href="https://github.com/rfprod/file-metadata" target=_blank>GitHub Repo</a></h3>
       <div class="panel panel-default">
-        <div class="panel-heading">Image Search Abstraction Layer description</div>
+        <div class="panel-heading">File Metadata Microservice description</div>
         <div class="panel-body">
           <ul>
-            <li>User can get the image URLs, alt text and page urls for a set of images relating to a given search string.</li>
-            <li>User can paginate through the responses by adding a <code>?offset=2</code> parameter to the URL.</li>
-            <li>User can pass keywords to search for relevant images like this:
-              <ul>
-                <li><a href="https://image-search-rfprod.c9users.io/imagesearch/scifi?offset=10" target="test">https://image-search-rfprod.c9users.io/imagesearch/scifi?offset=10</a></li>
-              </ul>
+            <li>User can submit a FormData object that includes a file upload:
+                <form action="some_action" class="form-inline" id="form">
+                  <fieldset class="form-group">
+                    <hr/>
+                    <div class="form-group">
+                      <input type="file" class="form-control-file" name="file"/>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" class="form-control btn-success" value="Submit"/>
+                    </div>
+                    <input type="reset" class="form-control btn-danger" id="reset" value="Reset"/>
+                    <hr/>
+                  </fieldset>
+                </form>
             </li>
-            <li>Offset must be defined, its absence results in error:
+            <li>When user submits something, server returns the file size in bytes within the JSON response:
               <ul>
-                <li><a href="https://image-search-rfprod.c9users.io/imagesearch/scifi" target="test">https://image-search-rfprod.c9users.io/imagesearch/scifi</a></li>
-              </ul>
-            </li>
-            <li>User can browse recent queries for images like this:
-              <ul>
-                <li><a href="https://image-search-rfprod.c9users.io/latest/imagesearch/" target="test">https://image-search-rfprod.c9users.io/latest/imagesearch/</a></li>
-              </ul>
-            </li>
-            <li>Example response for image search request:
-              <ul>
-                <li><code>[<br/>{"url":"http://image_url-1","snippet":"title 1","thumbnail":"http://thumbnail_url-1","context":"http://context_url-1"},<br/>{"url":"http://image_url-2","snippet":"title 2","thumbnail":"http://thumbnail_url-2","context":"http://context_url-2"}<br/>]</code></li>
-              </ul>
-            </li>
-            <li>Example response for recent queries request:
-              <ul>
-                <li><code>[<br/>{"when":"2016-01-26 18:06","term":"term 1"},<br/>{"when":"2016-01-26 18:06","term":"term 2"}<br/>]</code></li>
+                <li><code>[{"fileSize":"000"}]</code></li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
-      <iframe name="test" src="#" style="width:100%;border:0;"></iframe>
+      <iframe class="wordwrap" name="test" onload="resizeIframe(this);" src="#" style="width:100%;hidden;border:0;"></iframe>
+      <script>
+        function resizeIframe(obj) {
+          obj.style.height = '0px';
+          obj.style.height = (obj.contentWindow.document.body.scrollHeight+20) + 'px';
+        }
+        $(document).ready(function(){
+          $("#form").find("#reset").click(function clearForm(){
+    				$(this).parent().parent().find('input[name="file"]').val("");
+    				return false;
+    			});
+        });
+      </script>
     </div>
   </body>
 </html>

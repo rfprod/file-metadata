@@ -1,6 +1,6 @@
-# Image Search Abstraction Layer built on Clementine.js FCC Boilerplate
+# File Metadata Microservice built on Clementine.js FCC Boilerplate
 
-[Image Search Abstraction Layer deployed on c9.io](https://image-search-rfprod.c9users.io/)
+[File Metadata Microservice deployed on c9.io](https://file-metadata-microservice-rfprod.c9users.io/)
 
 ## Overview
 
